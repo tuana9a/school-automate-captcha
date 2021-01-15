@@ -1,7 +1,8 @@
-# CUSTOM
+# custom
 models/img/*
 models/test/*
 models/weights.pth
+captcha/*.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
