@@ -1,8 +1,15 @@
 # custom
-models/img/*
-models/test/*
-models/weights.pth
-captcha/*.png
+**/config/*local.*
+**/resource/*
+!**/resource/helloworld.txt
+*.cmd
+
+**/models/*
+!**/models/helloworld.txt
+tests/
+
+.vscode
+*.code-workspace
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

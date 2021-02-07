@@ -1,9 +1,0 @@
-server:
-    port: "2029"
-    upload: "./captcha"
-auto-register:
-    address: "http://127.0.0.1:2009"
-auto-student:
-    address: "http://127.0.0.1:2019"
-model:
-    path: "./models/weights.pth"
