@@ -22,12 +22,11 @@ def allowed_file(filename):
 
 def load_model(weight_path, device):
     model_config = Cfg.load_config_from_name('vgg_transformer')
-    print(' * Model: load weight')
     model_config['weights'] = weight_path
     model_config['cnn']['pretrained'] = False
     model_config['device'] = device
     model_config['predictor']['beamsearch'] = False
-    print(' * Model: init model')
+    print(' * Model: load model')
     model = Predictor(model_config)
     print(' * Model: load complete')
     return model
@@ -65,7 +64,7 @@ def create_app():
 
     print('======================================= MODEL =============================================')
     model = load_model('./models/weights.pth', 'cpu')
-    print('==================================== READY TO RACE ========================================')
+    print('======================================= READY =============================================')
 
     @app.route("/")
     def index():

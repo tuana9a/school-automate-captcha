@@ -1,21 +1,26 @@
 # captcha-service
+
 A Web Service use OCR to figure captcha number from image
 
 # python version
+
 python3.6.8 - 64bit
 
-# project installation
+# project installation (WINDOW)
+
 py -3 -m venv venv
 venv\Scripts\activate
 pip install Flask
 
-# run project
+# run project (WINDOW)
+
 venv\Scripts\activate
 set FLASK_APP=flaskr
 set FLASK_ENV=development
 flask run
 
-# other
+# packages
+
 (venv) pip install ipykernel
 (venv) pip install Pillow
 (venv) pip install vietocr
