@@ -26,9 +26,9 @@ def load_model(weight_path, device):
     model_config['cnn']['pretrained'] = False
     model_config['device'] = device
     model_config['predictor']['beamsearch'] = False
-    print(' * Model: load model')
+    print(' * OCR: load model')
     model = Predictor(model_config)
-    print(' * Model: load complete')
+    print(' * OCR: load success')
     return model
 
 
@@ -62,7 +62,6 @@ def init_server(custom_config=None):
 def create_app():
     app = init_server()
 
-    print('======================================= MODEL =============================================')
     model = load_model('./models/weights.pth', 'cpu')
     print('======================================= READY =============================================')
 

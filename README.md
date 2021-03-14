@@ -1,6 +1,6 @@
-# captcha-service
+# school-automate-captcha
 
-A Web Service use OCR to figure captcha number from image
+A Web Service use OCR to figure number from HUST's Captcha
 
 # python version
 
@@ -10,7 +10,6 @@ python3.6.8 - 64bit
 
 py -3 -m venv venv
 venv\Scripts\activate
-pip install Flask
 
 # run project (WINDOW)
 
