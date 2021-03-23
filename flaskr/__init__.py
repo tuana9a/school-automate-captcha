@@ -17,15 +17,16 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def load_model(weight_path, device):
-    model_config = Cfg.load_config_from_name('vgg_transformer')
-    model_config['weights'] = weight_path
+def load_model():
+    model_config = Cfg.load_config_from_file('./models/config.yml')
+
+    model_config['weights'] = './models/weights.pth'
+    model_config['device'] = 'cpu'
+
+    # EXPLAIN: để false vì mình không train
     model_config['cnn']['pretrained'] = False
-    model_config['device'] = device
-    model_config['predictor']['beamsearch'] = False
-    print(' * OCR: load model')
+
     model = Predictor(model_config)
-    print(' * OCR: load success')
     return model
 
 
@@ -56,13 +57,7 @@ def init_server(custom_config=None):
 
 def create_app():
     app = init_server()
-
-    model = load_model('./models/weights.pth', 'cpu')
-    print(' * Server: http://localhost:2029 ')
-
-    @app.route('/')
-    def index():
-        return 'Hello World!'
+    model = load_model()
 
     @app.route('/api/predict/captcha', methods=['POST'])
     def upload_to_predict():
@@ -77,17 +72,17 @@ def create_app():
             try:
                 buffers = uploadfile.stream._file.getvalue()
                 image = Image.open(io.BytesIO(buffers))
-                
                 result = model.predict(img=image)
                 return result
 
-            except NameError:
-                return 'Error'
             except TypeError:
                 return 'Error'
+
             except ValueError:
                 return 'Error'
 
         return 'not allowed: ' + filename
+
+    print(' * Listen: http://localhost:2029 ')
 
     return app
