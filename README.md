@@ -19,9 +19,10 @@ set FLASK_ENV=development
 flask run
 
 # packages (venv)
+# CAUTION: vietocr use pyyaml
 
 pip install Flask
 pip install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio===0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 pip install Pillow
-pip install pyyaml  #EXPLAIN: vietocr use this package
+pip install pyyaml
 pip install vietocr==0.3.2
