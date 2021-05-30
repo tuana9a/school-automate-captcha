@@ -19,13 +19,10 @@ def allowed_file(filename):
 
 def load_model():
     model_config = Cfg.load_config_from_file('./models/config.yml')
-
     model_config['weights'] = './models/weights.pth'
     model_config['device'] = 'cpu'
-
     # EXPLAIN: để false vì mình không train
     model_config['cnn']['pretrained'] = False
-
     model = Predictor(model_config)
     return model
 
@@ -82,7 +79,5 @@ def create_app():
                 return 'Error'
 
         return 'not allowed: ' + filename
-
-    print(' * Listen: http://localhost:2029 ')
 
     return app
