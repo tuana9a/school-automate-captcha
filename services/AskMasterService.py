@@ -1,7 +1,7 @@
 import requests
 
 
-def askWorkerAddress(url, data):
+def ask_worker_address(url, data):
     try:
         response = requests.post(url, data)
         return response

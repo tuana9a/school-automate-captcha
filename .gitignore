@@ -1,12 +1,5 @@
 # custom
-**/config/*local.*
-**/resource/*
-!**/resource/helloworld.txt
-*.cmd
-
-**/models/*
-!**/models/helloworld.txt
-tests/
+model/*weights*.pth
 
 .vscode
 *.code-workspace
