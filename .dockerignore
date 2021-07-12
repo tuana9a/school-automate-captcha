@@ -1,3 +1,6 @@
-venv
+venv/
 .vscode
 *.code-workspace
+*.cmd
+*.sh
+*.ipynb

@@ -1,8 +1,11 @@
-# custom
-model/*weights*.pth
+# tuana9a
+resource/
 
 .vscode
 *.code-workspace
+*.cmd
+*.sh
+*.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

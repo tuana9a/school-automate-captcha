@@ -1,3 +1,0 @@
-config-path: ./model/config.yml
-weights-path: ./model/weights.pth
-device-type: cpu
