@@ -1,15 +1,17 @@
-from PIL import Image
-from flask import Flask, request, flash
-from werkzeug.utils import secure_filename
-
-from vietocr.tool.config import Cfg
-from vietocr.tool.predictor import Predictor
-
 import os
 import io
 import sys
 import yaml
 import logging
+
+from PIL import Image
+from flask import Flask, request, flash
+from werkzeug.utils import secure_filename
+
+from datetime import datetime
+from vietocr.tool.config import Cfg
+from vietocr.tool.predictor import Predictor
+
 
 with open('resource/app-config.yml') as f:
     AppConfig = yaml.load(f, Loader=yaml.FullLoader)
@@ -61,8 +63,8 @@ def main():
     model = load_model()
     app = init_server()
 
-    @app.route('/api/predict/captcha', methods=['POST'])
-    def upload_to_predict():
+    @app.route('/api/captcha/to/text', methods=['POST'])
+    def captcha_to_text():
         if 'file' not in request.files:
             flash('No file part')
             return 'no file upload'
@@ -77,10 +79,13 @@ def main():
                 result = model.predict(img=image)
                 return result
 
-            except TypeError:
-                return 'Error'
+            except:
+                now = datetime.now().strftime("%Y-%m-%d")
+                log_path = AppConfig['path']['logs_dir'] + f'{now}.log'
+                logging.basicConfig(filename=log_path, filemode='a',
+                                    format='%(asctime)s [%(levelname)s] %(message)s')
+                logging.error(f' file: {uploadfile}')
 
-            except ValueError:
                 return 'Error'
 
         return 'not allowed: ' + filename
